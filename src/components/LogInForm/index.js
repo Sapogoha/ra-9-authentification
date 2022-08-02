@@ -1,41 +1,18 @@
 import React, { useState, useContext } from 'react';
-// import PropTypes from 'prop-types'
 
 import AuthContext from '../../contexts/AuthContext';
-// import PropTypes from 'prop-types'
-import { useNavigate } from 'react-router-dom';
 
 import { socialMediaName } from '../data/data';
 // import styles from './index.module.css';
 
 function LogInForm() {
-  const EMPTY_STATE = { username: '', password: '' };
+  const EMPTY_STATE = { login: '', password: '' };
   const [form, setForm] = useState(EMPTY_STATE);
-  // const navigate = useNavigate();
-  // const auth = {
-  //   username: form.username.trim(),
-  //   password: form.password.trim(),
-  // };
-
   const { handleLogin } = useContext(AuthContext);
-
-  // const { token, profile, handleLogin, handleLogout } = useContext(AuthContext);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    // if (form.username.trim() === '' || form.password.trim() === '') {
-    //   return;
-    // }
-
-    // navigate('/news');
-
-    console.log(form);
-    // handleLogin(auth);
     handleLogin(form);
-
-    setForm(EMPTY_STATE);
-
-    // console.log(auth);
   };
 
   const handleChange = (evt) => {
@@ -51,11 +28,11 @@ function LogInForm() {
           <input
             type="text"
             className="form-control"
-            id="username"
-            name="username"
-            aria-describedby="username"
+            id="login"
+            name="login"
+            aria-describedby="login"
             placeholder="Username"
-            value={form.username}
+            value={form.login}
             onChange={handleChange}
             required
           />

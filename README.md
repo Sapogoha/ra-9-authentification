@@ -6,6 +6,8 @@ This is a variation of authentification on some social media.
 
 You'll also need to use `npm run start` on the `backend` dirrectory to check how everything work.
 
+Please use `username "vasya"` and `password "password"` to check how this project works.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### In order to check the project, you can run

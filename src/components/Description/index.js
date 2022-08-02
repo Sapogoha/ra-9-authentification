@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types'
 
 import { socialMediaName } from '../data/data';
 
@@ -11,7 +10,5 @@ function Description() {
     </div>
   );
 }
-
-// Description.propTypes = {}
 
 export default Description;

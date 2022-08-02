@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types'
 
 function NewsItem({ news }) {
   if (!news) {
@@ -16,7 +15,5 @@ function NewsItem({ news }) {
     </>
   );
 }
-
-// NewsItem.propTypes = {}
 
 export default NewsItem;

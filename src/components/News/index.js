@@ -1,54 +1,47 @@
-import React from 'react';
-// import PropTypes from 'prop-types'
+import React, { useContext, useState, useEffect } from 'react';
+
+import { Link } from 'react-router-dom';
 
 import NewsItem from './NewsItem';
+import AuthContext from '../../contexts/AuthContext';
 
 function News() {
-  const news = [
-    {
-      id: 1,
-      title: 'er2 REW wer wer',
-      image: 'https://placeimg.com/640/480/nature',
-      content: 'er2 REW wer wer',
-    },
-    {
-      id: 2,
-      title: 'er2 REW wer wer',
-      image: 'https://placeimg.com/640/480/arch',
-      content: 'er2 REW wer wer',
-    },
-    {
-      id: 3,
-      title: 'er2 REW wer wer',
-      image: 'https://placeimg.com/640/480/tech',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quaerat quia ratione magnam libero odit molestiae quam, ea facere nesciunt?',
-    },
-    {
-      id: 4,
-      title: 'er2 REW wer wer',
-      image: 'https://placeimg.com/640/480/sepia',
-      content:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, fugit.',
-    },
-  ];
+  const [news, setNews] = useState([]);
+  const { token } = useContext(AuthContext);
+
+  const getNews = async (token) => {
+    try {
+      const data = await fetch(`${process.env.REACT_APP_DATA_URL}news`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const news = await data.json();
+
+      setNews(news);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getNews(token);
+  }, []);
+
   return (
     <ul className="news-container">
       {news.length > 0
         ? news.map((item) => (
-            <li
-              key={item.id}
-              className="card news-item"
-              // style={{ width: '45%' }}
-            >
-              <NewsItem news={item} />
+            <li key={item.id} className="card news-item">
+              <Link to={`/news/${item.id}`}>
+                <NewsItem news={item} />
+              </Link>
             </li>
           ))
         : 'No news'}
     </ul>
   );
 }
-
-// News.propTypes = {}
 
 export default News;
